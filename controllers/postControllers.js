@@ -20,3 +20,16 @@ exports.getPostById = async(req, res, next) => {
         next(error)
     }
 }
+
+exports.createNewPost = async(req, res, next) => {
+    try {
+        let {title, body} = req.body // Postman testing
+        let post = new Post(title, body)
+
+        post = await post.save()
+        res.status(201).json({message: "Post created"})
+    } catch (error) {
+        console.log(error)
+        next(error)
+    }
+}
