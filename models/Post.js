@@ -13,7 +13,7 @@ class Post {
         let dd = d.getDate()
         let createdDate = `${yyyy}-${mm}-${dd}`
 
-        let sql = `INSERT INTO posts(title,body,created_at) VALUES('${this.title}', '${this.body}', '${createdDate}');`; //added mark to end !hipsut muista!
+        let sql = `INSERT INTO posts(title,body,created_at) VALUES('${this.title}', '${this.body}', '${createdDate}');`;
 
         const [newPost, _] = await db.execute(sql)
         return newPost
@@ -36,7 +36,10 @@ class Post {
         return updatedPost
     }
 
-    
+    static async deleteById(id) {
+        let sql = `DELETE FROM posts WHERE id = '${id}';`
+        return await db.execute(sql)
+    }
 }
 
 module.exports = Post

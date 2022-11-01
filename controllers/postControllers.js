@@ -43,6 +43,7 @@ exports.updatePostById = async(req, res, next) => {
         let postId = Number(req.params.id)
         let  {title, body} = req.body
         let [post, _] = await Post.findById(postId)
+        console.log(post)
         post = await Post.updateById(postId, title, body)
         res.status(204).json({message: "Post updated"})
     } catch (error) {
@@ -54,7 +55,10 @@ exports.updatePostById = async(req, res, next) => {
 // Delete post
 exports.deletePostById = async(req, res, next) => {
     try {
-        
+        let postId = Number(req.params.id)
+        let [post, _] = await Post.findById(postId)
+        post = await Post.deleteById(postId)
+        res.status(200).json({message: "Post deleted"})
     } catch (error) {
         console.log(error)
         next(error)
