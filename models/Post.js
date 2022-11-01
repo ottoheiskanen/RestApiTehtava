@@ -29,6 +29,14 @@ class Post {
         let sql = `SELECT * FROM posts WHERE id=${id};`
         return db.execute(sql)
     }
+
+    static async updateById(id, title, body) {
+        let sql = `UPDATE posts SET title='${title}', body='${body}' WHERE id='${id}';`;
+        const [updatedPost, _] = await db.execute(sql)
+        return updatedPost
+    }
+
+    
 }
 
 module.exports = Post
