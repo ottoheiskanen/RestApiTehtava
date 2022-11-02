@@ -11,13 +11,7 @@ router
 router
 .route("/:id")
 .get(postControllers.getPostById)
-
-router
-.route("/:id")
 .put(postControllers.updatePostById)
-
-router
-.route("/:id")
 .delete(postControllers.deletePostById)
 
 module.exports = router
